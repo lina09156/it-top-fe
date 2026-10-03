@@ -150,23 +150,6 @@ todoForm.addEventListener('submit', (event) => {
   addTodo();
 });
 
-todoList.addEventListener('click', (event) => {
-  const deleteButton = event.target.closest('.delete-btn');
-  if (deleteButton) {
-    const { id } = deleteButton.dataset;
-    deleteTodo(Number(id));
-    return;
-  }
-});
-
-todoList.addEventListener('change', (event) => {
-  const checkbox = event.target.closest('input[type="checkbox"]');
-  if (checkbox) {
-    const { id } = checkbox.dataset;
-    toggleTodo(Number(id));
-  }
-});
-
 searchInput.addEventListener('input', () => {
   searchTodos();
 });
