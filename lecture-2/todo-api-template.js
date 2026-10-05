@@ -26,9 +26,34 @@ async function createTodo(title) {
   return result;
 }
 
+async function updateTodo(id, data) {
+  const res = await fetch(`${API_URL}/todos/${id}`, {
+    method: 'PATCH',
+    headers: jsonHeaders,
+    body: JSON.stringify(data),
+  });
+  const result = await res.json();
+  return result;
+}
+
+async function deleteTodo(id) {
+  const res = await fetch(`${API_URL}/todos/${id}`, {
+    method: 'DELETE',
+    headers: jsonHeaders,
+  });
+  const result = await res.json();
+  return result;
+}
+
 async function main() {
-  const created = await createTodo('Ляля');
-  console.log(created);
+  const todos = await getTodos();
+  console.log('todos:', todos);
+
+  const created = await createTodo('Новая задача на JS аззазаза');
+  console.log('created:', created);
+
+  const updated = await updateTodo(created.id, { completed: true });
+  console.log('updated:', updated);
 }
 
 main();
