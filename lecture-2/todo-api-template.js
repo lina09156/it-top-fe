@@ -15,3 +15,20 @@ async function getTodos() {
   const result = await res.json();
   return result;
 }
+
+async function createTodo(title) {
+  const res = await fetch(`${API_URL}/todos`, {
+    method: 'POST',
+    headers: jsonHeaders,
+    body: JSON.stringify({ title }),
+  });
+  const result = await res.json();
+  return result;
+}
+
+async function main() {
+  const created = await createTodo('Ляля');
+  console.log(created);
+}
+
+main();
